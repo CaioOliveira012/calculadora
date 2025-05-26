@@ -2,18 +2,8 @@ import math
 
 def calculadora():
     historico = []
-    ultimo_resultado = None
-
     while True:
-        if ultimo_resultado is not None:
-            usar_ultimo = input("Deseja usar o último resultado como n1? (s/n): ").lower()
-            if usar_ultimo == 's':
-                n1 = ultimo_resultado
-            else:
-                n1 = float(input("Digite o primeiro número: "))
-        else:
-            n1 = float(input("Digite o primeiro número: "))
-
+        n1 = float(input("Digite o primeiro número: "))
         n2 = float(input("Digite o segundo número: "))
 
         print("\nSelecione a operação: ")
@@ -25,8 +15,7 @@ def calculadora():
         print("6 - Consultar histórico")
         print("7 - Raiz quadrada de n1")
         print("8 - Potência (n1^n2)")
-        print("9 - Usar último resultado como n1")
-        print("10 - Salvar histórico em arquivo")
+        print("9 - Salvar histórico em arquivo")
         print("0 - Sair")
 
         escolha = input("Digite sua escolha: ")
@@ -77,7 +66,15 @@ def calculadora():
                 c = n1 ** n2
                 print("Resultado:", c)
                 historico.append(f"{n1} ^ {n2} = {c}")
-
+            case '9':
+                try:
+                    with open("historico_calculadora.txt", "w") as arquivo:
+                        for item in historico:
+                            arquivo.write(item + "\n")
+                    print("Histórico salvo com sucesso em 'historico_calculadora.txt'")
+                except:
+                    print("Erro ao salvar arquivo.")
+                continue
             case '0':
                 print("Saindo da calculadora.")
                 break
