@@ -68,7 +68,7 @@ def calculadora():
                 historico.append(f"{n1} ^ {n2} = {c}")
             case '9':
                 try:
-                    with open("historico_calculadora.txt", "w") as arquivo:
+                    with open("historico_calculadora.txt", "a") as arquivo:
                         for item in historico:
                             arquivo.write(item + "\n")
                     print("Histórico salvo com sucesso em 'historico_calculadora.txt'")
@@ -82,7 +82,6 @@ def calculadora():
                 print("Opção inválida. Tente novamente.")
                 continue
 
-        historico.append(c)
         if len(historico) > 5:
             historico.pop(0)
 
